@@ -10,7 +10,7 @@ class CustomRefererMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.allowed_referer = ['example.com']
-        self.ua = ['Mozilla/5.0','yandexbot']
+        self.ua = ['Mozilla/5.0','yandexbot','google']
         self.subdomain = 'sub'
         self.blockpage = 'https://google.com'
 
