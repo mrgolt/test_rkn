@@ -10,7 +10,7 @@ class CustomRefererMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.allowed_referer = ['example.com']
-        self.ua = ['Mozilla/5.0']
+        self.ua = ['Mozilla/5.0','yandexbot']
         self.subdomain = 'sub'
         self.blockpage = 'https://google.com'
 
@@ -19,6 +19,7 @@ class CustomRefererMiddleware:
             referer = request.META.get('HTTP_REFERER', '')
             user_agent = request.META.get('HTTP_USER_AGENT', '')
             current_host = request.get_host()
+            logger.debug(f"host {current_host}")
 
             if current_host.startswith(self.subdomain + '.') or user_agent in self.ua:
                 logger.debug("Already on subdomain or bot, skipping filtering")
